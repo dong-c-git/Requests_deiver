@@ -1,13 +1,9 @@
 # coding:utf-8
-
 import xlrd
-
 #读excel数据类
 class ExcelUtil():
-
-    def __init__(self,excelpath,sheetname="Sheet1"):
-
-        self.data = xlrd.open_workbook(excelpath)
+    def __init__(self,excelpath,sheetname="Sheet1"):#两个属性第一个属性：文件名，第二个属性sheetname
+        self.data = xlrd.open_workbook(excelpath)  #打开文件
         self.table = self.data.sheet_by_name(sheetname)
         #获取第一行作为key值
         self.keys = self.table.row_values(0)
@@ -15,12 +11,9 @@ class ExcelUtil():
         self.rowNows = self.table.nrows
         #获取总列数
         self.colNum = self.table.ncols
-
     def dict_data(self):
-
         if self.rowNows <= 1:
             print ("总行数小于等于1")
-
         else:
             r = []
             j = 1
@@ -34,7 +27,6 @@ class ExcelUtil():
                 r.append(s)
                 j+=1
             return r
-
 if __name__=="__main__":
     filepath = "debug_api.xlsx"
     sheetName = "Sheet1"
